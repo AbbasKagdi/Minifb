@@ -1,6 +1,4 @@
-@extends('layout')
-
-@section('content')
+<x-layout>
     <div class="container my-5" id="hero">
         @include('partials._hero')
         <hr>
@@ -17,5 +15,4 @@
             @endunless
         </div>
     </div>
-
-@endsection
+</x-layout>

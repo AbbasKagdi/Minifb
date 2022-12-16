@@ -1,6 +1,4 @@
-@extends('layout')
-
-@section('content')
+<x-layout>
     <div class="container my-5">
         {{-- <div class="container text-center">
             <img src="{{asset('/images/laravel.png')}}" class="img-fluid" width="200px" />
@@ -22,9 +20,9 @@
                     $colors = ['primary', 'success', 'danger', 'info', 'warning', 'dark', 'secondary'];
                 ?>
                 @foreach ($tags as $tag)
-                    <span class="badge text-bg-<?php echo $colors[array_rand($colors)] ?>">{{$tag}}</span>
+                    <span class="badge text-bg-<?php echo $colors[array_rand($colors)] ?>"><a class='td-0 text-light' href="/?tag={{$tag}}">{{$tag}}</a></span>
                 @endforeach
             </div>
         </div>
     </div>
-@endsection
+</x-layout>

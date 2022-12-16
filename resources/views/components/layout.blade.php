@@ -18,7 +18,7 @@
     @include('partials._navbar')
 
     {{-- main content --}}
-    @yield('content')
+    <main>{{$slot}}</main>
     
     @include('partials._footer')
     {{-- bootstrap js --}}
