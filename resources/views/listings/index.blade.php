@@ -15,4 +15,5 @@
             @endunless
         </div>
     </div>
+    <div class="container my-5">{{$listings->links()}}</div>
 </x-layout>
