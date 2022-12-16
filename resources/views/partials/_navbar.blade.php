@@ -11,7 +11,8 @@
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
-      <form class="d-flex" role="search" action="/">
+      <attr title="Add a new listing"><a class="btn btn-dark mx-1 border-light text-bold" href="/listings/create">+</a></attr>
+      <form class="d-flex mx-1" role="search" action="/">
         <input class="form-control me-2" name="search" type="search" placeholder="Search" aria-label="Search">
         <button class="btn btn-sm btn-outline-light" type="submit">Search</button>
       </form>

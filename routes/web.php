@@ -16,4 +16,9 @@ use App\Http\Controllers\ListingController;
 
 Route::get('/', [ListingController::class, 'index']);
 
+Route::post('/listings/', [ListingController::class, 'store']);
+
+Route::get('/listings/create', [ListingController::class, 'create']);
+
+// should be declared last, to avoid path conflict after /listings/
 Route::get('/listings/{listing}', [ListingController::class, 'show']);
