@@ -49,7 +49,7 @@ class ListingController extends Controller
         // send data to listing model for storing
         Listing::create($formFields);
 
-        return redirect('/');
+        return redirect('/')->with('message', 'Listing created Successfully!');
     }
     
 }
