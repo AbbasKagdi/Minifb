@@ -29,6 +29,9 @@ Route::get('/listings/{listing}/edit', [ListingController::class, 'edit']);
 // update listing
 Route::put('/listings/{listing}', [ListingController::class, 'update']);
 
+// delete listing
+Route::delete('/listings/{listing}', [ListingController::class, 'destroy']);
+
 // show individual listing by id
 // should be declared last, to avoid path conflict after /listings/
 Route::get('/listings/{listing}', [ListingController::class, 'show']);

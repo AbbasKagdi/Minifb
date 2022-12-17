@@ -20,12 +20,24 @@
                     $colors = ['primary', 'success', 'danger', 'info', 'warning', 'dark', 'secondary'];
                 ?>
                 @foreach ($tags as $tag)
-                    <span class="badge text-bg-<?php echo $colors[array_rand($colors)] ?>"><a class='td-0 text-light' href="/?tag={{$tag}}">{{$tag}}</a></span>
+                    <span class="badge text-bg-<?php echo $colors[array_rand($colors)] ?>">
+                        <a class='td-0 text-light' href="/?tag={{$tag}}">
+                            {{$tag}}
+                        </a>
+                    </span>
                 @endforeach
                 {{-- only visible to listing owner --}}
-                <div class="my-2">
-                    <a class="btn btn-dark btn-sm" href="/listings/{{$listing->id}}/edit"><i class="fas fa-pencil-alt"></i> Edit</a>
-                    <a class="btn btn-dark btn-sm" href="/listings/{{$listing->id}}/edit"><i class="fas fa-trash"></i> Delete</a>
+                <div class="my-3">
+                    <form method="POST" action="/listings/{{$listing->id}}">
+                        <a class="btn btn-primary w-25" href="/listings/{{$listing->id}}/edit">
+                            Edit <i class="fas fa-pencil-alt"></i>
+                        </a>
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="btn btn-danger w-25">
+                            Delete <i class="fas fa-trash"></i>
+                        </button>
+                    </form>
                 </div>
             </div>
         </div>

@@ -9,14 +9,14 @@ class ListingController extends Controller
 {
 
     /*
-    Common Resources
-    index
-    show
-    create
-    store
-    edit
-    update
-    destroy
+        Common Resources
+        index
+        show
+        create
+        store
+        edit
+        update
+        destroy
     */
 
     // show all listings
@@ -84,6 +84,12 @@ class ListingController extends Controller
         $listing->update($formFields);
 
         return redirect('/listings/'.$listing->id)->with('message', 'Listing updated Successfully!');
+    }
+
+    // delete a listing
+    public function destroy(Listing $listing){
+        $listing->delete();
+        return redirect('/')->with('message', 'Listing deleted successfully');
     }
 
 }
