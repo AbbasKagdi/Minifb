@@ -8,7 +8,7 @@
         <p class="lead">Ours is the Fury. Ours will be the Glory.</p>
         <div class="d-grid gap-2 d-md-flex">
           <a class="btn btn-dark btn-md px-4 me-md-2" href="#listings">See Listings</a>
-          <a class="btn btn-outline-secondary btn-md px-4" href="/">Post Listings</a>
+          <a class="btn btn-outline-secondary btn-md px-4" href="/listings/create">Post Listings</a>
         </div>
       </div>
     </div>

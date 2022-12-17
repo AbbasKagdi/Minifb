@@ -1,7 +1,7 @@
 @props(['listing'])
 <div class="col">
     <div class="card h-100">
-        <img src="{{asset('/images/laravel.png')}}" class="card-img-top p-3" alt="...">
+        <img src="{{$listing->logo ? asset('/storage/'. $listing->logo) : asset('/images/laravel.png')}}" class="card-img-top p-3" alt="...">
         <div class="card-body">
             <h5 class="card-title td-0"><a href='/listings/{{$listing->id}}' target='_blank'>{{$listing->title}}</a></h5>
             <p class="card-text">{{$listing->description}}</p>

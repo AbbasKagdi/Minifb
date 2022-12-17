@@ -2,7 +2,7 @@
     <div class="container my-5 row justify-content-center">
         <div class="col-md-6">
             <p class="display-4">Post a new listing</p>
-            <form action="/listings" method="POST">
+            <form action="/listings" method="POST" enctype="multipart/form-data">
                 {{-- cross site scripting protection --}}
                 @csrf
                 <div class="form-group my-3">
@@ -35,10 +35,11 @@
                     <input type="text" class="form-control" name="tags" id="tags" placeholder="laravel,api,backend" value="{{old('tags')}}">
                     @error('tags') <small class="text-danger my-1">{{$message}}</small> @enderror
                 </div>
-                {{-- <div class="form-group my-3">
-                    <label for="job">Company Logo</label>
+                <div class="form-group my-3">
+                    <label for="logo">Company Logo</label>
                     <input type="file" class="form-control" name="logo" id="logo">
-                </div> --}}
+                    @error('logo') <small class="text-danger my-1">{{$message}}</small> @enderror
+                </div>
                 <div class="form-group my-3">
                     <label for="description">Job description</label>
                     <textarea class="form-control" name="description" id="description" placeholder="Include tasks, requirements, salary etc." rows="5" value="{{old('description')}}"></textarea>
