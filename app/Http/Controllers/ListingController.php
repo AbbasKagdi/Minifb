@@ -30,12 +30,17 @@ class ListingController extends Controller
         return view('listings.show', ['listing' => $listing ]);
     }
 
+    // edit listing form
+    public function edit(Listing $listing){
+        return view('listings.edit', ['listing'=> $listing]);
+    }
+
     // listing creation form
     public function create(){
         return view('listings.create');
     }
 
-    // listing creation form
+    // handle data from listing creation form and store in db
     public function store(Request $request){
         $formFields = $request->validate([
             'title'=>'required',
@@ -57,5 +62,28 @@ class ListingController extends Controller
 
         return redirect('/')->with('message', 'Listing created Successfully!');
     }
-    
+
+    // handle data from listing updation form and store in db
+    public function update(Request $request, Listing $listing){
+        $formFields = $request->validate([
+            'title'=>'required',
+            'company'=>['required'],
+            'location'=>'required',
+            'website'=>'required',
+            'email'=>['required', 'email'],
+            'tags'=>'required',
+            'description'=>'required'
+        ]);
+
+        // logo upload
+        if($request->hasFile('logo')){
+            $formFields['logo'] = $request->file('logo')->store('logos', 'public');
+        }
+
+        // send data to listing model for updating / storing
+        $listing->update($formFields);
+
+        return redirect('/listings/'.$listing->id)->with('message', 'Listing updated Successfully!');
+    }
+
 }
