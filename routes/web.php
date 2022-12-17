@@ -45,3 +45,9 @@ Route::post('/users', [UserController::class, 'store']);
 
 // logout user
 Route::post('/logout', [UserController::class, 'logout']);
+
+// show login form
+Route::get('/login', [UserController::class, 'login']);
+
+// login user
+Route::post('/users/authenticate', [UserController::class, 'authenticate']);
