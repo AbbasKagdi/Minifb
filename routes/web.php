@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ListingController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,3 +36,12 @@ Route::delete('/listings/{listing}', [ListingController::class, 'destroy']);
 // show individual listing by id
 // should be declared last, to avoid path conflict after /listings/
 Route::get('/listings/{listing}', [ListingController::class, 'show']);
+
+// show new user register form
+Route::get('/register', [UserController::class, 'create']);
+
+// create new user
+Route::post('/users', [UserController::class, 'store']);
+
+// logout user
+Route::post('/logout', [UserController::class, 'logout']);

@@ -9,13 +9,34 @@
     <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">Home</a>
+          <a class="nav-link active" aria-current="page" href="/">Home</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Link</a>
-        </li>
+        
+        {{-- links exclusive to logged in users --}}
+        @auth
+          <li class="nav-item">
+            <span class="nav-link">Hi {{auth()->user()->name}}</span>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/listings/manage">Manage listings</a>
+          </li>
+          <li class="nav-item">
+            <form action="/logout" method="post">
+              @csrf
+              <attr title="Logout"><button type="submit" class="nav-link bg-dark border-0"><i class="fas fa-power-off"></i></button></attr>
+            </form>
+          </li>
+        {{-- visible to logged out users --}}
+        @else
+          <li class="nav-item">
+            <a class="nav-link" href="/login">Login</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/register">Register</a>
+          </li>
+        @endauth
       </ul>
-      <attr title="Add a new listing"><a class="btn btn-dark mx-1 border-light text-bold" href="/listings/create">+</a></attr>
+      <attr title="Add a new listing"><a class="btn btn-dark m-2 my-lg-0 border-light text-bold" href="/listings/create">+</a></attr>
       <form class="d-flex">
         <input class="form-control me-2" name="search" type="search" placeholder="Search" aria-label="Search">
         <button class="btn btn-sm btn-outline-light" type="submit">Go</button>
