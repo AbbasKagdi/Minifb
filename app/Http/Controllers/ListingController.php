@@ -32,6 +32,10 @@ class ListingController extends Controller
 
     // edit listing form
     public function edit(Listing $listing){
+        // Make sure logged in user is owner
+        if($listing->user_id != auth()->id()) {
+            abort(403, 'Unauthorized Action');
+        }
         return view('listings.edit', ['listing'=> $listing]);
     }
 
@@ -57,6 +61,9 @@ class ListingController extends Controller
             $formFields['logo'] = $request->file('logo')->store('logos', 'public');
         }
 
+        // setting listing ownership to the current user
+        $formFields['user_id'] = auth()->id();
+
         // send data to listing model for storing
         Listing::create($formFields);
 
@@ -65,6 +72,11 @@ class ListingController extends Controller
 
     // handle data from listing updation form and store in db
     public function update(Request $request, Listing $listing){
+        // Make sure logged in user is owner
+        if($listing->user_id != auth()->id()) {
+            abort(403, 'Unauthorized Action');
+        }
+
         $formFields = $request->validate([
             'title'=>'required',
             'company'=>['required'],
@@ -80,6 +92,9 @@ class ListingController extends Controller
             $formFields['logo'] = $request->file('logo')->store('logos', 'public');
         }
 
+        // pass user's id for ownership
+        // $formFields['user_id'] = auth()->id();
+
         // send data to listing model for updating / storing
         $listing->update($formFields);
 
@@ -88,8 +103,21 @@ class ListingController extends Controller
 
     // delete a listing
     public function destroy(Listing $listing){
+        // Make sure logged in user is owner
+        if($listing->user_id != auth()->id()) {
+            abort(403, 'Unauthorized Action');
+        }
+
+        // deleting after owner confirmation
         $listing->delete();
+
         return redirect('/')->with('message', 'Listing deleted successfully');
+    }
+    
+    // delete a listing
+    // show listings owned by the user
+    public function manage(){
+        // return view('listings.manage', ['listings' => auth()->user()->listings()->get()]);
     }
 
 }

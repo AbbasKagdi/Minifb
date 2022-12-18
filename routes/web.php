@@ -19,7 +19,7 @@ use App\Http\Controllers\UserController;
 Route::get('/', [ListingController::class, 'index']);
 
 // save listing to db
-Route::post('/listings/', [ListingController::class, 'store']);
+Route::post('/listings', [ListingController::class, 'store'])->middleware('auth');
 
 // show create listing form
 // middleware for user owned listings
@@ -38,6 +38,10 @@ Route::put('/listings/{listing}', [ListingController::class, 'update'])->middlew
 // auth middlewear for route protection
 Route::delete('/listings/{listing}', [ListingController::class, 'destroy'])->middleware('auth');
 
+// manage user
+// auth middlewear for route protection
+Route::get('/listings/manage', [UserController::class, 'manage'])->middleware('auth');
+
 // show individual listing by id
 // should be declared last, to avoid path conflict after /listings/
 Route::get('/listings/{listing}', [ListingController::class, 'show']);
@@ -54,6 +58,7 @@ Route::post('/users', [UserController::class, 'store']);
 Route::post('/logout', [UserController::class, 'logout'])->middleware('auth');
 
 // show login form
+// middleware route name login
 // guest middlewear for route protection
 Route::get('/login', [UserController::class, 'login'])->name('login')->middleware('guest');
 
