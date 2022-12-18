@@ -113,7 +113,10 @@ class ListingController extends Controller
     
     // show listings owned by the user
     public function manage(){
-        return view('listings.manage', ['listings' => auth()->user()->listings()->get()]);
+        // using variable to avoid inteliphense errors in vscode
+        /** @var \App\Models\User $user **/
+        $user = auth()->user();
+        return view('listings.manage', ['listings' => $user->listings()->get()]);
     }
 
 }
