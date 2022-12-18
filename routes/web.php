@@ -26,6 +26,10 @@ Route::post('/listings', [ListingController::class, 'store'])->middleware('auth'
 // auth middlewear for route protection
 Route::get('/listings/create', [ListingController::class, 'create'])->middleware('auth');
 
+// manage user
+// auth middlewear for route protection
+Route::get('/listings/manage', [ListingController::class, 'manage'])->middleware('auth');
+
 // show listing edit form
 // auth middlewear for route protection
 Route::get('/listings/{listing}/edit', [ListingController::class, 'edit'])->middleware('auth');
@@ -37,10 +41,6 @@ Route::put('/listings/{listing}', [ListingController::class, 'update'])->middlew
 // delete listing
 // auth middlewear for route protection
 Route::delete('/listings/{listing}', [ListingController::class, 'destroy'])->middleware('auth');
-
-// manage user
-// auth middlewear for route protection
-Route::get('/listings/manage', [UserController::class, 'manage'])->middleware('auth');
 
 // show individual listing by id
 // should be declared last, to avoid path conflict after /listings/

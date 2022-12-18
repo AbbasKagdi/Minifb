@@ -92,9 +92,6 @@ class ListingController extends Controller
             $formFields['logo'] = $request->file('logo')->store('logos', 'public');
         }
 
-        // pass user's id for ownership
-        // $formFields['user_id'] = auth()->id();
-
         // send data to listing model for updating / storing
         $listing->update($formFields);
 
@@ -114,10 +111,9 @@ class ListingController extends Controller
         return redirect('/')->with('message', 'Listing deleted successfully');
     }
     
-    // delete a listing
     // show listings owned by the user
     public function manage(){
-        // return view('listings.manage', ['listings' => auth()->user()->listings()->get()]);
+        return view('listings.manage', ['listings' => auth()->user()->listings()->get()]);
     }
 
 }
