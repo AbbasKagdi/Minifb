@@ -26,19 +26,25 @@
                         </a>
                     </span>
                 @endforeach
-                {{-- only visible to listing owner --}}
-                <div class="my-3">
-                    <form method="POST" action="/listings/{{$listing->id}}">
-                        <a class="btn btn-primary w-25" href="/listings/{{$listing->id}}/edit">
-                            Edit <i class="fas fa-pencil-alt"></i>
-                        </a>
-                        @csrf
-                        @method('DELETE')
-                        <button type="submit" class="btn btn-danger w-25">
-                            Delete <i class="fas fa-trash"></i>
-                        </button>
-                    </form>
+                <div class="my-2">
+                    <p class="mb-0"><i class='fas fa-user'></i> Posted by {{$listing['user_id']}}</p>
+                    <small>on {{date('d-M-y', strtotime($listing['created_at']))}} at {{date('h:i', strtotime($listing['created_at']))}}</small>
                 </div>
+                {{-- only visible to listing owner --}}
+                @if($listing->user_id == auth()->id())
+                    <div class="my-3">
+                        <form method="POST" action="/listings/{{$listing->id}}">
+                            <a class="btn btn-primary w-25" href="/listings/{{$listing->id}}/edit">
+                                Edit <i class="fas fa-pencil-alt"></i>
+                            </a>
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-danger w-25">
+                                Delete <i class="fas fa-trash"></i>
+                            </button>
+                        </form>
+                    </div>
+                @endif
             </div>
         </div>
     </div>
