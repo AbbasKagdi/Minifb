@@ -27,7 +27,8 @@
                     </span>
                 @endforeach
                 <div class="my-2">
-                    <p class="mb-0"><i class='fas fa-user'></i> Posted by {{$listing['user_id']}}</p>
+                    {{-- Accessing name property of user using user_id in listing --}}
+                    <p class="mb-0"><i class='fas fa-user'></i> Posted by {{$listing->author($listing->user_id)}}</p>
                     <small>on {{date('d-M-y', strtotime($listing['created_at']))}} at {{date('h:i', strtotime($listing['created_at']))}}</small>
                 </div>
                 {{-- only visible to listing owner --}}

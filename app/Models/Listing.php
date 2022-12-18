@@ -27,4 +27,9 @@ class Listing extends Model
     public function user(){
         return $this->belongsTo(User::class, 'user_id');
     }
+
+    // Accessing name property of user using user_id in listing
+    public function author($user_id){
+        return User::find($user_id)->name;
+    }
 }
