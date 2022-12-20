@@ -19,13 +19,8 @@ class DatabaseSeeder extends Seeder
     {
         // \App\Models\User::factory(5)->create();
 
-        $user = User::factory()->create([
-            'name' => 'John Doe',
-            'email' => 'john@gmail.com'
-        ]);
+        User::factory(2)->create();
 
-        Listing::factory(6)->create([
-            'user_id' => $user->id
-        ]);
+        Listing::factory(7)->create();
     }
 }
