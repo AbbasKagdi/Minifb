@@ -11,10 +11,10 @@
             <div class="col-md-9">
                 <h1>{{$listing['title']}}</h2>
                 <p>{{$listing->description}}<p>
-                <small><p><i class='fas fa-briefcase'></i> <a href='{{$listing->website}}' class='td-0'>{{$listing->company}}</a></small>
-                <p><i class='fas fa-map-marker-alt'></i> {{$listing['location']}}<p>
-                <p><i class='fas fa-envelope'></i> {{$listing['email']}}</p>
-
+                <p class="mt-0"><i class='fas fa-briefcase'></i> <a href='{{$listing->website}}' class='td-0'>{{$listing->company}}</a></p>
+                <p class="mt-0"><i class='fas fa-user'></i> {{$listing->author($listing->user_id)}}</p>
+                <p class="mt-0"><i class='fas fa-map-marker-alt'></i> {{$listing['location']}}</p>
+                <p class="mt-0"><i class='fas fa-envelope'></i> <a class="td-0 text-dark" href="mailto:{{$listing['email']}}" target="_blank">{{$listing['email']}}</a></p>
                 <?php
                     $tags = explode(",",$listing->tags); 
                     $colors = ['primary', 'success', 'danger', 'info', 'warning', 'dark', 'secondary'];
@@ -28,7 +28,6 @@
                 @endforeach
                 <div class="my-2">
                     {{-- Accessing name property of user using user_id in listing --}}
-                    <p class="mb-0"><i class='fas fa-user'></i> Posted by {{$listing->author($listing->user_id)}}</p>
                     <small>on {{date('d-M-y', strtotime($listing['created_at']))}} at {{date('h:i', strtotime($listing['created_at']))}}</small>
                 </div>
                 {{-- only visible to listing owner --}}
@@ -46,6 +45,7 @@
                         </form>
                     </div>
                 @endif
+                @include('partials._comment_box')
             </div>
         </div>
     </div>

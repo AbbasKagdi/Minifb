@@ -46,4 +46,9 @@ class User extends Authenticatable
     public function listings(){
         return $this->hasMany(Listing::class, 'user_id');
     }
+    
+    // Relationship with listing
+    public function comment(){
+        return $this->hasMany(Comment::class);
+    }
 }

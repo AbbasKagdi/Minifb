@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -18,6 +19,7 @@ class ListingFactory extends Factory
     {
         return [
             'title' => $this->faker->sentence(3),
+            'user_id'=> User::get()->random()->id,
             'tags'=>'laravel, api, backend',
             'location'=>$this->faker->city(),
             'website'=>$this->faker->url(),

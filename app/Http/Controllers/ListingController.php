@@ -27,6 +27,15 @@ class ListingController extends Controller
 
     // show single listing
     public function show(Listing $listing){
+        // to do listing slugs
+        // dd($listing);
+        $listing = Listing::find($listing->id)
+        ->with('user:id,name',
+            'comments.user:id,name',
+            'comments.replies.user:id,name',
+            'comments.replies.replies.user:id,name')
+        ->first();
+        // dd($listing);
         return view('listings.show', ['listing' => $listing ]);
     }
 
