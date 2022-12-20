@@ -64,3 +64,7 @@ Route::get('/login', [UserController::class, 'login'])->name('login')->middlewar
 
 // login user
 Route::post('/users/authenticate', [UserController::class, 'authenticate']);
+
+// create a new comment
+// auth middlewear for route protection
+Route::post('/comment', [CommentController::class, 'store'])->middleware('auth');

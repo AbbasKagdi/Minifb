@@ -28,6 +28,11 @@ class Listing extends Model
         return $this->belongsTo(User::class, 'user_id');
     }
 
+    // Relationship with comment
+    public function comments(){
+        return $this->hasMany(Comment::class, 'listing_id')->whereNull('parent_id');
+    }
+
     // Accessing name property of user using user_id in listing
     public function author($user_id){
         return User::find($user_id)->name;

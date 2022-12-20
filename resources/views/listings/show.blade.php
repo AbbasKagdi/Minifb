@@ -46,6 +46,7 @@
                         </form>
                     </div>
                 @endif
+                @include('components.comment_box')
             </div>
         </div>
     </div>
